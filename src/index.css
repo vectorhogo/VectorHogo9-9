@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-vazir: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    
+    /* Typography Line-Heights & Spacing Tokens */
+    --line-height-body: 1.75;
+    --line-height-heading: 1.3;
+    --line-height-code: 1.6;
+  }
+
+  html {
+    font-family: var(--font-vazir);
+    direction: rtl;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-vazir);
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    line-height: var(--line-height-body);
+    overflow-x: hidden;
+  }
+
+  /* Typography Scale Tokens */
+  .text-display {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    line-height: var(--line-height-heading);
+    font-weight: 800;
+  }
+
+  .text-h1 {
+    font-size: clamp(1.75rem, 3vw, 2rem);
+    line-height: var(--line-height-heading);
+    font-weight: 800;
+  }
+
+  .text-h2 {
+    font-size: clamp(1.35rem, 2.5vw, 1.625rem);
+    line-height: var(--line-height-heading);
+    font-weight: 700;
+  }
+
+  .text-h3 {
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    line-height: var(--line-height-heading);
+    font-weight: 700;
+  }
+
+  .text-body {
+    font-size: 0.9375rem; /* 15px */
+    line-height: var(--line-height-body);
+  }
+
+  .text-caption {
+    font-size: 0.8125rem; /* 13px */
+    line-height: 1.5;
+  }
+
+  /* Strict Monospace & Code Block Styling */
+  code, pre, .font-mono {
+    font-family: var(--font-mono) !important;
+    direction: ltr !important;
+    text-align: left !important;
+    unicode-bidi: isolate;
+  }
+
+  /* Persian Typography Utility */
+  .font-vazir {
+    font-family: var(--font-vazir);
+    direction: rtl;
+  }
+
+  /* Inline English Technical Term Helper inside Persian text */
+  .en-term {
+    direction: ltr;
+    display: inline-block;
+    unicode-bidi: embed;
+    font-weight: 500;
+  }
+}
+
+/* Immersive UI Ambient Glow & RGB Cards */
+.rgb-border {
+  position: relative;
+  background: #141414;
+  border-radius: 1rem;
+}
+
+.rgb-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: calc(1rem + 1px);
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.3), rgba(124, 58, 237, 0.3), rgba(168, 85, 247, 0.3));
+  background-size: 300% 300%;
+  z-index: -1;
+  opacity: 0.4;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.rgb-border:hover::before {
+  opacity: 1;
+  filter: blur(2px);
+  animation: rgbShift 6s ease infinite;
+}
+
+.rgb-card {
+  position: relative;
+  background: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rgb-card:hover {
+  border-color: rgba(34, 211, 238, 0.3);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.08), 0 0 15px rgba(124, 58, 237, 0.08);
+  transform: translateY(-2px);
+}
+
+.rgb-button {
+  position: relative;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(34, 211, 238, 0.25));
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  transition: all 0.2s ease;
+}
+
+.rgb-button:hover {
+  border-color: rgba(124, 58, 237, 0.6);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.25), inset 0 0 12px rgba(124, 58, 237, 0.2);
+}
+
+.rgb-glow-text {
+  text-shadow: 0 0 16px rgba(34, 211, 238, 0.4);
+}
+
+@keyframes rgbShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e1e24;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2e2e38;
+}
+
+/* ==========================================
+   PHASE 07: ACCESSIBILITY & THEME ADAPTATION
+   ========================================== */
+
+/* Reduced Motion Mode */
+html.reduced-motion *,
+html.reduced-motion *::before,
+html.reduced-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Larger Text Mode */
+html.large-text {
+  font-size: 110%;
+  --line-height-body: 1.85;
+}
+
+/* High Contrast Mode */
+html.high-contrast {
+  --rgb-border-contrast: rgba(255, 255, 255, 0.25);
+}
+
+html.high-contrast .rgb-card,
+html.high-contrast [class*="border-white/"] {
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+html.high-contrast .text-gray-400,
+html.high-contrast .text-gray-500 {
+  color: #d1d5db !important;
+}
+
+/* Light Theme Mode */
+html.theme-light {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+html.theme-light body {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+html.theme-light header {
+  background-color: rgba(248, 250, 252, 0.92);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+html.theme-light .rgb-card,
+html.theme-light .rgb-border {
+  background-color: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+}

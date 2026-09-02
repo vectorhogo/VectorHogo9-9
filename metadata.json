@@ -1,0 +1,8 @@
+{
+  "name": "Remix PromptLab - آزمایشگاه مهندسی پرامپت",
+  "description": "پلتفرم تعاملی و پیشرفته آموزش مهندسی پرامپت از صفر تا سیستم‌های حرفه‌ای هوش مصنوعی (From Simple Prompts to Professional AI Systems)",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
